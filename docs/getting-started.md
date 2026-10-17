@@ -90,6 +90,7 @@ Don't load all skills at once — it wastes context. Load skills relevant to the
 - Working on UI? Load `frontend-ui-engineering`
 - Debugging? Load `debugging-and-error-recovery`
 - Setting up CI? Load `ci-cd-and-automation`
+- Queue, webhook, cron, or outbox? Load `background-work-and-delivery`
 
 ## Skill Anatomy
 

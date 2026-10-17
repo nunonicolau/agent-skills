@@ -16,6 +16,7 @@ body:
       description: Which skill did not work as expected?
       options:
         - api-and-interface-design
+        - background-work-and-delivery
         - browser-testing-with-devtools
         - ci-cd-and-automation
         - code-review-and-quality

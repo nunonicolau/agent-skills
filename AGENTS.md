@@ -29,6 +29,7 @@ The agent should automatically map user intent to skills:
 - Code review → `code-review-and-quality`
 - Refactoring / simplification → `code-simplification`
 - API or interface design → `api-and-interface-design`
+- Queue, webhook, cron, or outbox delivery → `background-work-and-delivery`
 - UI work → `frontend-ui-engineering`
 
 ### Lifecycle Mapping (Implicit Commands)

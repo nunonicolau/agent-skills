@@ -156,7 +156,7 @@ Explicit user phrases (“follow TDD”, “use code-review-and-quality”) stil
 |----------|--------|
 | Clarifying requirements | `interview-me`, `idea-refine`, `spec-driven-development` |
 | Planning tasks | `planning-and-task-breakdown` |
-| Implementing | `incremental-implementation`, `frontend-ui-engineering`, `api-and-interface-design` |
+| Implementing | `incremental-implementation`, `frontend-ui-engineering`, `api-and-interface-design`, `background-work-and-delivery` |
 | Testing | `test-driven-development`, `browser-testing-with-devtools` |
 | Debugging | `debugging-and-error-recovery` |
 | Reviewing | `code-review-and-quality`, `code-simplification` |

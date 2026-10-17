@@ -1,0 +1,62 @@
+{
+  "skill_name": "background-work-and-delivery",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "The webhook was retried and the customer was charged twice. Make the handler safe under redelivery.",
+        "top_k": 3
+      },
+      {
+        "prompt": "The queue consumer acks the message before the email goes out, and we lose mail when the process dies.",
+        "top_k": 3
+      },
+      {
+        "prompt": "This scheduled job double-applied payouts when two cron instances overlapped. Stop the second run from doing the work.",
+        "top_k": 3
+      },
+      {
+        "prompt": "Poison messages retry forever and block the worker. Cap them and send the failures to a dead-letter.",
+        "top_k": 3
+      },
+      {
+        "prompt": "The order row commits but the outbox publish never happens if we crash. Fix the publisher so the message still goes out.",
+        "top_k": 3
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "Design the REST and GraphQL contract for creating a charge, including the public interface between the modules.",
+        "owner": "api-and-interface-design"
+      },
+      {
+        "prompt": "Add structured logging, metrics, and tracing so production can tell why this endpoint failed.",
+        "owner": "observability-and-instrumentation"
+      },
+      {
+        "prompt": "Audit this input handler for authentication bugs and OWASP vulnerabilities before it accepts untrusted data.",
+        "owner": "security-and-hardening"
+      }
+    ]
+  },
+  "evals": [
+    {
+      "id": 1,
+      "kind": "execution",
+      "prompt": "Billing double-charged a customer when the broker redelivered. The write-up is in INCIDENT.md. Make the worker safe under retry and duplicate delivery, and prove it with the repository's own tests.",
+      "expected_output": "Ack only after a durable outcome, one provider call across redelivery and overlap, unknown timeouts not retried as a new intent, permanent failures dead-lettered, and the six delivery tests passing",
+      "files": [
+        "background-work-and-delivery"
+      ],
+      "expectations": [
+        "The provider is charged once when the same intent is delivered twice in sequence, and the second delivery returns the stored outcome",
+        "A crash after the provider returns and before ack, followed by a redelivery, still charges once",
+        "Two overlapping deliveries of the same intent result in one charge, using an atomic claim rather than a check followed by a write",
+        "A provider timeout leaves the claim unknown and does not charge again under a new intent id",
+        "A permanent provider rejection is dead-lettered and is not retried without a cap",
+        "The same intent id with a different payload is rejected and the original outcome is left unchanged",
+        "The acknowledgement happens only after the outcome is committed",
+        "The repository's own test command is run and the new cases pass"
+      ]
+    }
+  ]
+}

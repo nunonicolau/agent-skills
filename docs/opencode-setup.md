@@ -119,6 +119,7 @@ Map the user's intent to the matching skill automatically:
 - Code review → `code-review-and-quality`
 - Refactoring / simplification → `code-simplification`
 - API or interface design → `api-and-interface-design`
+- Queue, webhook, cron, or outbox delivery → `background-work-and-delivery`
 - UI work → `frontend-ui-engineering`
 
 ## Execution Model
