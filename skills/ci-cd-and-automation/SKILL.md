@@ -313,7 +313,7 @@ When the pipeline exceeds 10 minutes, apply these strategies in order of impact:
 ```
 Slow CI pipeline?
 ├── Cache dependencies
-│   └── Use actions/cache or setup-node cache option for node_modules
+│   └── Use the setup-node cache option (or actions/cache) for the package manager cache, not node_modules
 ├── Run jobs in parallel
 │   └── Split lint, typecheck, test, build into separate parallel jobs
 ├── Only run what changed
